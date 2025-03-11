@@ -2,15 +2,25 @@ html,
 body {
   background-color: black;
   color: white;
+  overflow-x: hidden;
 }
-
+body {
+  min-height: 100vh;
+}
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .header {
   position: fixed;
   top: 0px;
   width: 100%;
-  padding: 20px 30px;
+  padding: 15px 20px;
   border-bottom: 1px solid #1b1b1c;
   backdrop-filter: blur(50px);
+  z-index: 10;
 }
 
 .main {
@@ -23,33 +33,309 @@ body {
   width: 90px;
 }
 
+.mobile-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .desktop-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
 }
 
-.headerDextopBtn {
-  display: flex;
-  padding: 10px 20px;
+.headerDesktopBtn {
+  min-width: 235px;
+  display: inline-flex;
+  padding: 12px 28px;
   justify-content: center;
   align-items: center;
-  border-radius: 100px;
+  white-space: nowrap;
+  border-radius: 50px;
   border: 2px solid #2b75dc;
-  background: transparent;
+  background: linear-gradient(
+    135deg,
+    rgba(43, 117, 220, 0.1),
+    rgba(43, 117, 220, 0.3)
+  );
   color: #2b75dc;
-  font-size: 14px;
-  font-style: normal;
+  font-size: 16px;
   font-weight: 700;
-  line-height: normal;
   letter-spacing: 0.5px;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: all 0.4s ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
 
-.headerDextopBtn:hover {
+.headerDesktopBtn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(43, 117, 220, 0.15);
+  transition: all 0.4s ease-in-out;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.headerDesktopBtn:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.headerDesktopBtn:hover {
   background: #2b75dc;
   color: white;
+  box-shadow: 0px 10px 30px rgba(43, 117, 220, 0.4);
+  border-color: #2b75dc;
+}
+
+.headerDesktopBtn:active {
+  transform: scale(0.98);
+}
+
+.desktop-header__nav__list {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nav-link {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  border-radius: 100px;
+  background: linear-gradient(90deg, #2b75dc, #5a9bfd);
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::before,
+.nav-link:focus::before {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #2b75dc;
+  text-shadow: 0px 0px 10px rgba(43, 117, 220, 0.6);
+}
+
+.nav-link.active {
+  color: #2b75dc;
+  text-shadow: 0px 0px 15px rgba(43, 117, 220, 0.8);
+}
+
+@media (max-width: 768px) {
+  .nav-link {
+    font-size: 14px;
+  }
+}
+
+.nav-link.active {
+  color: #2b75dc;
+  text-shadow: 0px 0px 15px rgba(43, 117, 220, 0.8);
+  position: relative;
+}
+
+.header__burger--btn {
+  background-color: transparent;
+  border: none;
+  width: 50px;
+  height: 35px;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.header__burger--btn span {
+  display: block;
+  position: absolute;
+  height: 6px;
+  width: 100%;
+  background: #fff;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+.header__burger--btn {
+}
+
+.header__burger--btn span:nth-child(1) {
+  top: 0px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.header__burger--btn span:nth-child(2) {
+  top: 13px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.header__burger--btn span:nth-child(3) {
+  top: 26px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.header__burger--btn.open span:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 0px;
+  left: 8px;
+}
+
+.header__burger--btn.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.header__burger--btn.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 36px;
+  left: 8px;
+}
+/* Затемнення всього екрану при відкритті меню */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+  z-index: 8;
+}
+
+/* Відкрите затемнення */
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Контейнер для мобільного меню */
+.mobile-menu {
+  position: fixed;
+  top: 80px;
+  right: -100%; /* Ховаємо за екран */
+  width: 280px;
+  height: 100vh;
+  background: rgba(43, 75, 220, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  transition: right 0.4s ease-in-out;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 9;
+}
+
+/* Відкрите меню */
+.mobile-menu.open {
+  right: 0;
+}
+
+/* Заборона скролу */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Посилання в меню */
+.mobile-menu li {
+  list-style: none;
+  margin: 15px 0;
+}
+
+.mobile-menu a {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease-in-out;
+}
+
+.mobile-menu a:hover {
+  color: #f8d210;
+}
+
+/* Головний контейнер */
+#app {
+  overflow: hidden;
+  color: #ffffff;
+
+  text-align: center;
+
+  position: relative;
+  z-index: 1;
+}
+
+/* Canvas для анімації курсора */
+#app canvas {
+  display: block;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
