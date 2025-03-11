@@ -1,0 +1,55 @@
+html,
+body {
+  background-color: black;
+  color: white;
+}
+
+.header {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  padding: 20px 30px;
+  border-bottom: 1px solid #1b1b1c;
+  backdrop-filter: blur(50px);
+}
+
+.main {
+  padding-top: 75px;
+}
+.logo__wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 90px;
+}
+
+.desktop-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.headerDextopBtn {
+  display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  border: 2px solid #2b75dc;
+  background: transparent;
+  color: #2b75dc;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.headerDextopBtn:hover {
+  background: #2b75dc;
+  color: white;
+}
